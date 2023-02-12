@@ -47,11 +47,18 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.preview_sdk.xml:system/etc/permissions/android.software.preview_sdk.xml
 endif
 
+ifneq ($(LINEAGE_BUILD),)
+    LINEAGE_SYSTEM_SEVER := org.lineageos.platform
+else
+    LINEAGE_SYSTEM_SEVER :=
+endif
+
+
 # The order here is the same order they end up on the classpath, so it matters.
 PRODUCT_SYSTEM_SERVER_JARS := \
     com.android.location.provider \
     services \
-    org.lineageos.platform
+    $(LINEAGE_SYSTEM_SEVER)
 
 PRODUCT_COPY_FILES += \
     system/core/rootdir/etc/public.libraries.android.txt:system/etc/public.libraries.txt
